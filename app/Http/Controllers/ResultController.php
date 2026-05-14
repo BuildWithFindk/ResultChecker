@@ -8,28 +8,30 @@ class ResultController extends Controller
 {
     public function fetch(Request $request)
     {
-        // 1. Validate the incoming request
-        // Ensure the user actually typed something before submitting
         $request->validate([
-            'symbol_number' => 'required|string|max:15',
+            'symbol_number' => 'required',
+            'dob' => 'required'
         ]);
 
-        // 2. Capture the inputted symbol number
-        $symbol = $request->input('symbol_number');
+        // SIMULATION: Check if the API is active or has the data
+        $apiSuccess = false; // Set to true if you have a working API
 
-        // 3. API Placeholder
-        // When you secure the official API, your code will look like this:
-        /*
-        $response = Http::get("https://api.neb.gov.np/v1/results", [
-            'symbol' => $symbol
-        ]);
-        
-        if ($response->successful()) {
-            return view('result-display', ['data' => $response->json()]);
+        if ($apiSuccess) {
+            // Logic for real data
+            $data = [
+                'name' => 'ANUPAM CHAUDHARY',
+                'symbol' => $request->symbol_number,
+                'gpa' => '3.65',
+                'status' => 'Passed'
+            ];
+            return view('result-display', compact('data'));
+        } else {
+            // SHOW BETA PAGE: Fallback when API is not used
+            return view('beta-result', [
+                'symbol' => $request->symbol_number,
+                'version' => 'Beta 1.0.2',
+                'message' => 'The official API is currently offline. Viewing in Beta Mode.'
+            ]);
         }
-        */
-
-        // 4. Temporary response for testing your local environment
-        return back()->with('info', "System is ready. Awaiting official API integration. (Tested Symbol: {$symbol})");
     }
 }
