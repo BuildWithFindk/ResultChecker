@@ -4,7 +4,7 @@
 A Laravel-based utility for students in Nepal to check their 10th (SEE) and 12th (NEB) class results.
 
 ## 🛠️ Tech Stack
-*   **Backend:** Laravel 11 / PHP 8.5
+*   **Backend:** Laravel 13.9.0 / PHP 8.5.5
 *   **Frontend:** Tailwind CSS v4 (Vite Integrated)
 *   **Hardware:** Optimized for MacBook Pro 2019 (Intel)
 
